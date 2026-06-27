@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://6crl42ocl151"]
+
+[ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
+
+[node name="Mundo" type="Node2D" unique_id=1434500640]
+script = ExtResource("1_o02vu")
+
+[node name="Label" type="Label" parent="." unique_id=605276492]
+offset_left = 1069.0
+offset_right = 1105.0
+offset_bottom = 23.0
+text = "DIAS"
+
+[node name="Dias" type="Label" parent="." unique_id=1379860179]
+offset_left = 1115.0
+offset_right = 1152.0
+offset_bottom = 23.0
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="." unique_id=1762156412]
+offset_left = 979.0
+offset_right = 1025.0
+offset_bottom = 23.0
+text = "HORA"
+
+[node name="Horas" type="Label" parent="." unique_id=898040649]
+offset_left = 1041.0
+offset_right = 1069.0
+offset_bottom = 23.0
+text = "0"
+horizontal_alignment = 1
