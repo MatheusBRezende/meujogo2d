@@ -6,27 +6,67 @@
 script = ExtResource("1_o02vu")
 
 [node name="Label" type="Label" parent="." unique_id=605276492]
-offset_left = 1069.0
-offset_right = 1105.0
+offset_left = 77.0
+offset_right = 113.0
 offset_bottom = 23.0
 text = "DIAS"
 
 [node name="Dias" type="Label" parent="." unique_id=1379860179]
-offset_left = 1115.0
-offset_right = 1152.0
+offset_left = 118.0
+offset_right = 155.0
 offset_bottom = 23.0
 text = "0"
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="." unique_id=1762156412]
-offset_left = 979.0
-offset_right = 1025.0
+offset_left = 1.0
+offset_right = 47.0
 offset_bottom = 23.0
 text = "HORA"
 
 [node name="Horas" type="Label" parent="." unique_id=898040649]
-offset_left = 1041.0
-offset_right = 1069.0
+offset_left = 49.0
+offset_right = 77.0
 offset_bottom = 23.0
 text = "0"
 horizontal_alignment = 1
+
+[node name="stop" type="Button" parent="." unique_id=1078830796]
+offset_top = 30.0
+offset_right = 60.0
+offset_bottom = 61.0
+text = "PAUSA"
+
+[node name="x1" type="Button" parent="." unique_id=1319104480]
+offset_left = 63.0
+offset_top = 30.0
+offset_right = 81.0
+offset_bottom = 61.0
+text = "1"
+
+[node name="x2" type="Button" parent="." unique_id=218223873]
+offset_left = 84.0
+offset_top = 30.0
+offset_right = 102.0
+offset_bottom = 61.0
+text = "2"
+
+[node name="x3" type="Button" parent="." unique_id=599098430]
+offset_left = 106.0
+offset_top = 30.0
+offset_right = 124.0
+offset_bottom = 61.0
+text = "3"
+
+[node name="x4" type="Button" parent="." unique_id=898423978]
+offset_left = 128.0
+offset_top = 30.0
+offset_right = 146.0
+offset_bottom = 61.0
+text = "4"
+
+[connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
+[connection signal="pressed" from="x1" to="." method="_on_x_1_pressed"]
+[connection signal="pressed" from="x2" to="." method="_on_x_2_pressed"]
+[connection signal="pressed" from="x3" to="." method="_on_x_3_pressed"]
+[connection signal="pressed" from="x4" to="." method="_on_x_4_pressed"]

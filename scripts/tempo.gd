@@ -3,6 +3,7 @@ var dias = 0
 var horas = 0
 var segundos = 0.0
 var desacumular
+var velocidade = 1
 @onready var texthoras = get_node("Horas")
 @onready var textdias = get_node("Dias")
 
@@ -12,15 +13,17 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta) -> void:
 	calTempo(delta)
 
-func calTempo(delta:float) -> void:
+# Função que simula a passagem de tempo tanto em horas quanto em dias
+# Acresenta 1 dia acada 24 horas
+func calTempo(delta) -> void:
+	delta = velocidade * delta
 	segundos += delta
 	if segundos > 3.5:
 		horas += 1
 		if horas >= 24:
-			print("ENTROU AQUI")
 			dias += 1
 			horas = 0
 		print("Horas: ",horas)
@@ -28,3 +31,19 @@ func calTempo(delta:float) -> void:
 		print("Dias: ",dias)
 		textdias.text = str(dias)
 		segundos -= 3.5
+		
+
+func _on_x_1_pressed() -> void:
+	velocidade = 1
+
+func _on_x_2_pressed() -> void:
+	velocidade = 2
+
+func _on_x_3_pressed() -> void:
+	velocidade = 3
+
+func _on_x_4_pressed() -> void:
+	velocidade = 4
+
+func _on_stop_pressed() -> void:
+	velocidade = 0
