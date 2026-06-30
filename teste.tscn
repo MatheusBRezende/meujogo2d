@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://6crl42ocl151"]
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
+[ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/alimento.gd" id="2_7w86a"]
+[ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://pessoa.gd" id="3_s2wow"]
 
 [node name="Mundo" type="Node2D" unique_id=1434500640]
 script = ExtResource("1_o02vu")
@@ -10,6 +12,22 @@ offset_left = 77.0
 offset_right = 113.0
 offset_bottom = 23.0
 text = "DIAS"
+metadata/_edit_use_anchors_ = true
+
+[node name="TXT_QTD" type="Label" parent="." unique_id=18566187]
+offset_left = 972.0
+offset_right = 1076.0
+offset_bottom = 23.0
+text = "QTD COMIDA"
+metadata/_edit_use_anchors_ = true
+
+[node name="QTD" type="Label" parent="." unique_id=1384008387]
+offset_left = 1116.0
+offset_right = 1152.0
+offset_bottom = 23.0
+text = "0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Dias" type="Label" parent="." unique_id=1379860179]
 offset_left = 118.0
@@ -17,12 +35,14 @@ offset_right = 155.0
 offset_bottom = 23.0
 text = "0"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="." unique_id=1762156412]
 offset_left = 1.0
 offset_right = 47.0
 offset_bottom = 23.0
 text = "HORA"
+metadata/_edit_use_anchors_ = true
 
 [node name="Horas" type="Label" parent="." unique_id=898040649]
 offset_left = 49.0
@@ -30,12 +50,14 @@ offset_right = 77.0
 offset_bottom = 23.0
 text = "0"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="stop" type="Button" parent="." unique_id=1078830796]
 offset_top = 30.0
 offset_right = 60.0
 offset_bottom = 61.0
 text = "PAUSA"
+metadata/_edit_use_anchors_ = true
 
 [node name="x1" type="Button" parent="." unique_id=1319104480]
 offset_left = 63.0
@@ -43,6 +65,7 @@ offset_top = 30.0
 offset_right = 81.0
 offset_bottom = 61.0
 text = "1"
+metadata/_edit_use_anchors_ = true
 
 [node name="x2" type="Button" parent="." unique_id=218223873]
 offset_left = 84.0
@@ -50,6 +73,7 @@ offset_top = 30.0
 offset_right = 102.0
 offset_bottom = 61.0
 text = "2"
+metadata/_edit_use_anchors_ = true
 
 [node name="x3" type="Button" parent="." unique_id=599098430]
 offset_left = 106.0
@@ -57,6 +81,7 @@ offset_top = 30.0
 offset_right = 124.0
 offset_bottom = 61.0
 text = "3"
+metadata/_edit_use_anchors_ = true
 
 [node name="x4" type="Button" parent="." unique_id=898423978]
 offset_left = 128.0
@@ -64,6 +89,13 @@ offset_top = 30.0
 offset_right = 146.0
 offset_bottom = 61.0
 text = "4"
+metadata/_edit_use_anchors_ = true
+
+[node name="arbusto" type="Node2D" parent="." unique_id=663037893]
+script = ExtResource("2_7w86a")
+
+[node name="pessoa" type="Node2D" parent="." unique_id=1886699581]
+script = ExtResource("3_s2wow")
 
 [connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
 [connection signal="pressed" from="x1" to="." method="_on_x_1_pressed"]

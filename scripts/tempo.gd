@@ -6,11 +6,7 @@ var desacumular
 var velocidade = 1
 @onready var texthoras = get_node("Horas")
 @onready var textdias = get_node("Dias")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+signal passou_uma_hora
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
@@ -23,6 +19,7 @@ func calTempo(delta) -> void:
 	segundos += delta
 	if segundos > 3.5:
 		horas += 1
+		passou_uma_hora.emit()
 		if horas >= 24:
 			dias += 1
 			horas = 0

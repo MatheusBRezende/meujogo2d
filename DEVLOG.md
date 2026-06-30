@@ -52,7 +52,7 @@ cheio de árvores, arbustos e grama.
 - Peles e outros recursos de caça
 
 **Ações do jogador:**
-- Coletar de arbustos (alimento)
+- Coletar de arbustos (alimento) 2 por pessoa
 - Caçar animais com pedras/gravetos (alimento + peles)
 - Construir cabanas novas (estilo ferramenta de construção de Cities Skylines)
 
