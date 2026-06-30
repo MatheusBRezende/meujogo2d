@@ -1,11 +1,10 @@
 extends Node
-var qtd_alimento = 11.0
+var qtd_alimento = 0.0
 @onready var mundo: Node2D = $".."
 @onready var qtd: Label = $"../QTD"
 signal gerou_alimento
 
 func _ready() -> void:
-
 	mundo.passou_uma_hora.connect(gerar_alimento)
 
 
@@ -14,10 +13,10 @@ func _process(delta: float) -> void:
 	pass
 
 func gerar_alimento():
-	gerou_alimento.emit()
 	if qtd_alimento >= 12:
 		print("LIMITE MÁXIMO ATINGIDO")
 		return
+	gerou_alimento.emit()
 		
 	print("LIMITE LIBERADO")
 	qtd_alimento += 0.5

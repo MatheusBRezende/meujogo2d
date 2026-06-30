@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
 [ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/alimento.gd" id="2_7w86a"]
-[ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://pessoa.gd" id="3_s2wow"]
+[ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/pessoa.gd" id="3_s2wow"]
 
 [node name="Mundo" type="Node2D" unique_id=1434500640]
 script = ExtResource("1_o02vu")
@@ -14,11 +14,11 @@ offset_bottom = 23.0
 text = "DIAS"
 metadata/_edit_use_anchors_ = true
 
-[node name="TXT_QTD" type="Label" parent="." unique_id=18566187]
+[node name="TXT_TOTAL" type="Label" parent="." unique_id=409046459]
 offset_left = 972.0
-offset_right = 1076.0
+offset_right = 1109.0
 offset_bottom = 23.0
-text = "QTD COMIDA"
+text = "TOTAL ALIMENTO"
 metadata/_edit_use_anchors_ = true
 
 [node name="QTD" type="Label" parent="." unique_id=1384008387]
@@ -91,11 +91,68 @@ offset_bottom = 61.0
 text = "4"
 metadata/_edit_use_anchors_ = true
 
-[node name="arbusto" type="Node2D" parent="." unique_id=663037893]
+[node name="arbusto" type="Node2D" parent="." unique_id=663037893 groups=["Arbustos"]]
+position = Vector2(1082, 421)
 script = ExtResource("2_7w86a")
 
+[node name="ColorRect" type="ColorRect" parent="arbusto" unique_id=1471616288]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
+[node name="arbusto2" type="Node2D" parent="." unique_id=2139287012 groups=["Arbustos"]]
+position = Vector2(50, 560)
+script = ExtResource("2_7w86a")
+
+[node name="ColorRect" type="ColorRect" parent="arbusto2" unique_id=808200901]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
+[node name="arbusto3" type="Node2D" parent="." unique_id=1292667633 groups=["Arbustos"]]
+position = Vector2(1110, 46)
+script = ExtResource("2_7w86a")
+
+[node name="ColorRect" type="ColorRect" parent="arbusto3" unique_id=1759064331]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
+[node name="arbusto4" type="Node2D" parent="." unique_id=1425459890 groups=["Arbustos"]]
+position = Vector2(1059, 276)
+script = ExtResource("2_7w86a")
+
+[node name="ColorRect" type="ColorRect" parent="arbusto4" unique_id=2075290746]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
+[node name="arbusto5" type="Node2D" parent="." unique_id=1761124014 groups=["Arbustos"]]
+position = Vector2(1111, 607)
+script = ExtResource("2_7w86a")
+
+[node name="ColorRect" type="ColorRect" parent="arbusto5" unique_id=2083046116]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
+[node name="arbusto6" type="Node2D" parent="." unique_id=658349881 groups=["Arbustos"]]
+position = Vector2(1111, 123)
+script = ExtResource("2_7w86a")
+
+[node name="ColorRect" type="ColorRect" parent="arbusto6" unique_id=1639044960]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09803922, 0.64705884, 0.03529412, 1)
+
 [node name="pessoa" type="Node2D" parent="." unique_id=1886699581]
+position = Vector2(1, 606)
 script = ExtResource("3_s2wow")
+
+[node name="ColorRect" type="ColorRect" parent="pessoa" unique_id=313730934]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.105882354, 0.06666667, 0.48235294, 1)
 
 [connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
 [connection signal="pressed" from="x1" to="." method="_on_x_1_pressed"]

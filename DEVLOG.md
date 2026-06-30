@@ -8,25 +8,38 @@ o que foi feito + qual o próximo passo.
 ## 2026-06-30
 
 **Feito:**
-- [x] Sistema de tempo funcionando (horas), independente de FPS, usando
-	  acumulador de `delta` com subtração (sem perda de precisão)
-- [x] Interface simples (Labels) mostrando Horas e Dias em tela, atualizando
-	  em tempo real
+- [x] Sistema de tempo funcionando (horas/dias), independente de FPS
+- [x] Interface simples (Labels) mostrando Horas e Dias em tela
 - [x] Git + SSH configurados (push sem precisar digitar senha toda vez)
+- [x] Botão de acelerar tempo (x1, x2, x3, x4, stop) via variável `velocidade`
+- [x] Arbusto gerando +0.5 alimento por hora via signal `passou_uma_hora`
+- [x] Limite máximo de alimento no arbusto (12 unidades)
+- [x] NPC com variável `fome` que diminui por hora
+- [x] NPC identifica o arbusto mais próximo usando grupos + `distance_to`
+- [x] NPC coleta automaticamente quando fome < 40 e arbusto tem >= 5 unidades
+- [x] Visualização do arbusto mais próximo com círculo amarelo (`_draw`)
 
 **Decisão:** não vai ter minutos no relógio por enquanto. A velocidade atual
-dos dias (1 dia a cada X segundos reais) já está num ritmo bom, nem rápido
-nem lento demais. Pode revisitar isso depois se sentir necessidade.
+dos dias está num ritmo bom. Pode revisitar depois se sentir necessidade.
 
-**PRÓXIMO PASSO (começar por aqui na próxima sessão):**
-- [x] Botão/tecla pra acelerar o tempo (ex: 1x, 2x, 4x), multiplicando o
-	  `delta` antes de passar pro `calTempo`
+**Decisão técnica:** o NPC ainda não se move fisicamente — ele identifica
+e coleta instantaneamente. Isso é "lógica de decisão", não path tracing.
+Path tracing (movimento real) vem no próximo passo.
+
+**Bug conhecido pra corrigir:**
+- [x] `gerou_alimento.emit()` dispara mesmo quando limite foi atingido e
+	  nenhum alimento foi gerado — mover o emit pra depois do `return`
+
+**PRÓXIMO PASSO — amanhã começar por aqui:**
+- [ ] Fazer o NPC se mover fisicamente até o arbusto mais próximo antes
+	  de coletar (pesquisar: "Godot move_toward" e "Godot NavigationAgent2D")
+	  Sugestão: começa com `move_toward` (mais simples, sem obstáculos),
+	  só migra pra NavigationAgent2D se sentir necessidade de desviar de
+	  paredes/construções
 
 **Depois disso:**
-- [ ] Sistema de NPCs com path tracing simples
-	  (ex: 7:00 ir pro trabalho, fome < 30 -> buscar alimento na cabana do coletor)
-- [ ] Testar construção: colocar assets de teste no mapa que geram recursos,
-	  verificar se a soma em armazéns está correta
+- [ ] Interface mostrando fome do NPC em tela (Label ou barra)
+- [ ] Testar com 2+ arbustos e 2+ NPCs pra ver se cada um vai pro mais próximo
 - [ ] Interface minimamente visual pras construções
 
 ---
@@ -35,8 +48,7 @@ nem lento demais. Pode revisitar isso depois se sentir necessidade.
 
 > Marcos de progressão: por enquanto a ideia é ciência/tecnologia
 > (ex: descobrir o fogo, criar uma ferramenta específica). Cultura/sociedade
-> pode entrar mais pra frente, mas ainda não está definido — não travar nisso
-> agora, só ter em mente que pode crescer.
+> pode entrar mais pra frente, mas ainda não está definido.
 
 ### Era 1 — Paleolítico (DETALHADA, é a que está em desenvolvimento)
 
@@ -52,9 +64,9 @@ cheio de árvores, arbustos e grama.
 - Peles e outros recursos de caça
 
 **Ações do jogador:**
-- Coletar de arbustos (alimento) 2 por pessoa
+- Coletar de arbustos (alimento, 2 por pessoa)
 - Caçar animais com pedras/gravetos (alimento + peles)
-- Construir cabanas novas (estilo ferramenta de construção de Cities Skylines)
+- Construir cabanas novas (estilo Cities Skylines)
 
 **Construções:**
 | Construção | Função | Capacidade |
@@ -69,8 +81,7 @@ cheio de árvores, arbustos e grama.
 **Comércio:** existe, mas ainda não definido como funciona na prática.
 
 **Marco pra avançar de Era:** ainda não definido (provavelmente ligado a
-descobrir o fogo e/ou ferramentas melhores — pensar nisso quando a Era 1
-estiver jogável).
+descobrir o fogo e/ou ferramentas melhores).
 
 ---
 
@@ -103,7 +114,7 @@ vira algo parecido com uma cidade pequena.
 **Temas pra explorar quando chegar a hora:**
 - Geração de energia
 - Produção em massa / fábricas
-- Provavelmente big jump na população e complexidade de construções
+- Big jump na população e complexidade de construções
 
 ### Era 5 — Nuclear (DIREÇÃO GERAL, ainda não detalhada)
 
@@ -113,10 +124,11 @@ vira algo parecido com uma cidade pequena.
 **Temas pra explorar quando chegar a hora:**
 - Ciência avançada como foco principal
 - Energia nuclear
-- O que significa "vencer" ou "terminar" o jogo nessa Era ainda é uma pergunta
-  em aberto
+- O que significa "vencer" o jogo nessa Era ainda é uma pergunta em aberto
 
 ---
+
+## Ideias soltas (não esquecer, mas sem prioridade ainda)
 
 - Comércio entre NPCs já na Era 1, expande na Era 2
 - Sistema de ciência: ainda não decidido como será a coleta/geração
@@ -128,7 +140,13 @@ vira algo parecido com uma cidade pequena.
 
 ## Decisões técnicas (pra não esquecer o "porquê")
 
-- Tempo: usa acumulador com subtração (`segundos -= 1`) em vez de zerar
-  (`segundos = 0`), pra não perder a sobra de delta entre frames
+- Tempo: usa acumulador com subtração (`segundos -= 3.5`) em vez de zerar,
+  pra não perder a sobra de delta entre frames
 - Nós de UI acessados via `@onready var` no topo do script, não dentro de
   `_process`, pra não ficar buscando o nó toda hora
+- Velocidade do tempo: variável `velocidade` multiplicada no delta dentro de
+  `calTempo`, não altera o delta original do Godot
+- Signals usados pra comunicação entre scripts (ex: `passou_uma_hora`,
+  `gerou_alimento`) em vez de checar variáveis todo frame no `_process`
+- Arbustos adicionados a um grupo ("Arbustos") pra NPC achar todos via
+  `get_tree().get_nodes_in_group()` sem caminhos fixos
