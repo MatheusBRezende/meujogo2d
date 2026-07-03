@@ -1,9 +1,10 @@
 extends Node2D
+
 var dias = 0
 var horas = 0
 var segundos = 0.0
-var desacumular
 var velocidade = 1
+
 @onready var texthoras = get_node("Horas")
 @onready var textdias = get_node("Dias")
 signal passou_uma_hora
@@ -15,18 +16,20 @@ func _process(delta) -> void:
 # Função que simula a passagem de tempo tanto em horas quanto em dias
 # Acresenta 1 dia acada 24 horas
 func calTempo(delta) -> void:
-	delta = velocidade * delta
-	segundos += delta
+	segundos += delta * velocidade
 	if segundos > 3.5:
+		
+		segundos = 0.0
 		horas += 1
+		
 		passou_uma_hora.emit()
+		
 		if horas >= 24:
 			dias += 1
 			horas = 0
-		print("Horas: ",horas)
+			textdias.text = str(dias)
+		
 		texthoras.text = str(horas).lpad(2,"0")
-		print("Dias: ",dias)
-		textdias.text = str(dias)
 		segundos -= 3.5
 		
 
