@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://6crl42ocl151"]
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
-[ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/pessoa.gd" id="3_s2wow"]
+[ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/robo.gd" id="3_s2wow"]
 [ext_resource type="Texture2D" uid="uid://dboqagvsald7a" path="res://assets/New Piskel.png" id="4_3iyrq"]
-[ext_resource type="Texture2D" uid="uid://c6u25apfeu8ua" path="res://assets/x1.png" id="5_4iivt"]
 [ext_resource type="Texture2D" uid="uid://cmsm3wfxfqpqb" path="res://assets/New Piskel-4.png.png" id="6_cgmdw"]
+[ext_resource type="Texture2D" uid="uid://ccr5l82i5qvmr" path="res://assets/painelsolar.png" id="6_grbdc"]
+[ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/painel_solar.gd" id="7_grbdc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4iivt"]
 atlas = ExtResource("4_3iyrq")
@@ -76,102 +77,170 @@ animations = [{
 "texture": SubResource("AtlasTexture_o5rjx")
 }],
 "loop": 1,
-"name": &"slpeepy",
+"name": &"sleepy",
 "speed": 5.0
 }]
 
 [node name="Mundo" type="Node2D" unique_id=1434500640]
 script = ExtResource("1_o02vu")
 
-[node name="robo" type="Node2D" parent="." unique_id=1886699581]
+[node name="robo" type="Node2D" parent="." unique_id=796388850]
 position = Vector2(1, 606)
 script = ExtResource("3_s2wow")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo" unique_id=2139683817]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo" unique_id=2122039043]
 position = Vector2(49, 44.500008)
 scale = Vector2(0.30625, 0.27812484)
 sprite_frames = SubResource("SpriteFrames_0sx3b")
 animation = &"noenergy"
 
-[node name="Label" type="Label" parent="." unique_id=605276492]
-offset_left = 77.0
-offset_right = 113.0
-offset_bottom = 23.0
+[node name="robo2" type="Node2D" parent="." unique_id=205577201]
+position = Vector2(1773, 197)
+script = ExtResource("3_s2wow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo2" unique_id=680113557]
+position = Vector2(49, 44.500008)
+scale = Vector2(0.30625, 0.27812484)
+sprite_frames = SubResource("SpriteFrames_0sx3b")
+animation = &"sleepy"
+
+[node name="Label" type="Label" parent="." unique_id=960074882]
+offset_left = 810.0
+offset_top = 23.0
+offset_right = 846.0
+offset_bottom = 46.0
 text = "DIAS"
 metadata/_edit_use_anchors_ = true
 
-[node name="TXT_TOTAL" type="Label" parent="." unique_id=409046459]
-offset_left = 972.0
-offset_right = 1109.0
-offset_bottom = 23.0
-text = "TOTAL ALIMENTO"
-metadata/_edit_use_anchors_ = true
-
-[node name="Dias" type="Label" parent="." unique_id=1379860179]
-offset_left = 118.0
-offset_right = 155.0
-offset_bottom = 23.0
+[node name="Dias" type="Label" parent="." unique_id=1499849192]
+offset_left = 860.0
+offset_top = 23.0
+offset_right = 897.0
+offset_bottom = 46.0
 text = "0"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="." unique_id=1762156412]
-offset_left = 1.0
-offset_right = 47.0
-offset_bottom = 23.0
+[node name="Label2" type="Label" parent="." unique_id=1304858195]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 710.0
+offset_top = 22.0
+offset_right = 756.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
 text = "HORA"
 metadata/_edit_use_anchors_ = true
 
-[node name="Horas" type="Label" parent="." unique_id=898040649]
-offset_left = 49.0
-offset_right = 77.0
-offset_bottom = 23.0
+[node name="Horas" type="Label" parent="." unique_id=337205440]
+offset_left = 765.0
+offset_top = 23.0
+offset_right = 793.0
+offset_bottom = 46.0
 text = "0"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="stop" type="Button" parent="." unique_id=1078830796]
-offset_top = 30.0
-offset_right = 60.0
-offset_bottom = 61.0
+[node name="painel_solar" type="Sprite2D" parent="." unique_id=448918405 groups=["Fonte"]]
+position = Vector2(1000, 722)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_grbdc")
+script = ExtResource("7_grbdc")
+
+[node name="qtd" type="Label" parent="painel_solar" unique_id=1845970783]
+offset_left = -276.66666
+offset_top = -113.33333
+offset_right = -263.33316
+offset_bottom = -90.00008
+scale = Vector2(4, 4)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="painel_solar2" type="Sprite2D" parent="." unique_id=1425756858 groups=["Fonte"]]
+position = Vector2(1654, 539)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_grbdc")
+script = ExtResource("7_grbdc")
+
+[node name="qtd" type="Label" parent="painel_solar2" unique_id=1064570447]
+offset_left = -276.66666
+offset_top = -113.33333
+offset_right = -263.33316
+offset_bottom = -90.00008
+scale = Vector2(4, 4)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="painel_solar3" type="Sprite2D" parent="." unique_id=1605376621 groups=["Fonte"]]
+position = Vector2(675, 369)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_grbdc")
+script = ExtResource("7_grbdc")
+
+[node name="qtd" type="Label" parent="painel_solar3" unique_id=1984444278]
+offset_left = -276.66666
+offset_top = -113.33333
+offset_right = -263.33316
+offset_bottom = -90.00008
+scale = Vector2(4, 4)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="painel_solar4" type="Sprite2D" parent="." unique_id=193874593 groups=["Fonte"]]
+position = Vector2(1148, 391)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_grbdc")
+script = ExtResource("7_grbdc")
+
+[node name="qtd" type="Label" parent="painel_solar4" unique_id=572920411]
+offset_left = -276.66666
+offset_top = -113.33333
+offset_right = -263.33316
+offset_bottom = -90.00008
+scale = Vector2(4, 4)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="somar" type="Button" parent="." unique_id=1075573998]
+offset_left = 121.0
+offset_top = 22.0
+offset_right = 152.0
+offset_bottom = 53.0
+text = "+"
+metadata/_edit_use_anchors_ = true
+
+[node name="diminuir" type="Button" parent="." unique_id=1832110260]
+offset_top = 22.0
+offset_right = 31.0
+offset_bottom = 53.0
+text = "-"
+metadata/_edit_use_anchors_ = true
+
+[node name="stop" type="Button" parent="." unique_id=1464133087]
+offset_left = 162.0
+offset_top = 22.0
+offset_right = 222.0
+offset_bottom = 53.0
 text = "PAUSA"
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1633270838]
-offset_left = 60.0
-offset_top = 9.0
-offset_right = 147.0
-offset_bottom = 103.0
-texture_normal = ExtResource("5_4iivt")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="x2" type="Button" parent="." unique_id=218223873]
-offset_left = 169.0
-offset_top = 30.0
-offset_right = 187.0
-offset_bottom = 61.0
-text = "2"
+[node name="velocidade_tempo" type="Label" parent="." unique_id=1182222073]
+offset_left = 31.0
+offset_top = 22.0
+offset_right = 121.0
+offset_bottom = 52.0
+text = "1"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="x3" type="Button" parent="." unique_id=599098430]
-offset_left = 193.0
-offset_top = 30.0
-offset_right = 211.0
-offset_bottom = 61.0
-text = "3"
-metadata/_edit_use_anchors_ = true
-
-[node name="x4" type="Button" parent="." unique_id=898423978]
-offset_left = 240.0
-offset_top = 30.0
-offset_right = 258.0
-offset_bottom = 61.0
-text = "4"
-metadata/_edit_use_anchors_ = true
-
+[connection signal="pressed" from="somar" to="." method="_on_somar_pressed"]
+[connection signal="pressed" from="diminuir" to="." method="_on_diminuir_pressed"]
 [connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="x2" to="." method="_on_x_2_pressed"]
-[connection signal="pressed" from="x3" to="." method="_on_x_3_pressed"]
-[connection signal="pressed" from="x4" to="." method="_on_x_4_pressed"]

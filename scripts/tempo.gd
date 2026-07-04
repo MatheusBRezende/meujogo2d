@@ -4,6 +4,7 @@ var dias = 0
 var horas = 0
 var segundos = 0.0
 var velocidade = 1
+var velocidade_anterior = 0
 
 @onready var texthoras = get_node("Horas")
 @onready var textdias = get_node("Dias")
@@ -21,7 +22,7 @@ func calTempo(delta) -> void:
 		
 		segundos = 0.0
 		horas += 1
-		
+
 		passou_uma_hora.emit()
 		
 		if horas >= 24:
@@ -33,21 +34,24 @@ func calTempo(delta) -> void:
 		segundos -= 3.5
 		
 
-func _on_x_1_pressed() -> void:
-	velocidade = 1
+func _on_somar_pressed():
+	if velocidade < 4:
+		velocidade += 1
+	atualizar_label()
 
-func _on_x_2_pressed() -> void:
-	velocidade = 2
+func _on_diminuir_pressed():
+	if velocidade > 0:
+		velocidade -= 1
+	atualizar_label()
 
-func _on_x_3_pressed() -> void:
-	velocidade = 3
-
-func _on_x_4_pressed() -> void:
-	velocidade = 4
+func atualizar_label():
+	$velocidade_tempo.text = str(velocidade) + "x"
 
 func _on_stop_pressed() -> void:
-	velocidade = 0
-
-
-func _on_texture_button_pressed() -> void:
-	velocidade = 1
+	if velocidade == 0:
+		velocidade = velocidade_anterior
+		$velocidade_tempo.text = str(velocidade) + "x"
+	else:
+		velocidade_anterior = velocidade
+		velocidade = 0
+		$velocidade_tempo.text = "Pausado"

@@ -1,6 +1,8 @@
 extends Node2D
 var qtd_energia = 0.0
 @onready var mundo: Node2D = $".."
+@onready var qtd: Label = $qtd
+var ocupado = false
 
 signal gerou_energia
 
@@ -21,4 +23,4 @@ func gerar_energia():
 	qtd_energia += 0.5
 	qtd.text = str(qtd_energia)
 	gerou_energia.emit()
-	print(name, " gerou alimento. Total: ", qtd_energia)
+	print(name, " gerou energia. Total: ", qtd_energia)
