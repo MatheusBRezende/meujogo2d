@@ -5,148 +5,151 @@ o que foi feito + qual o próximo passo.
 
 ---
 
-## 2026-06-30
+## 2026-07-04
 
 **Feito:**
-- [x] Sistema de tempo funcionando (horas/dias), independente de FPS
-- [x] Interface simples (Labels) mostrando Horas e Dias em tela
-- [x] Git + SSH configurados (push sem precisar digitar senha toda vez)
-- [x] Botão de acelerar tempo (x1, x2, x3, x4, stop) via variável `velocidade`
-- [x] Arbusto gerando +0.5 alimento por hora via signal `passou_uma_hora`
-- [x] Limite máximo de alimento no arbusto (12 unidades)
-- [x] NPC com variável `fome` que diminui por hora
-- [x] NPC identifica o arbusto mais próximo usando grupos + `distance_to`
-- [x] NPC coleta automaticamente quando fome < 40 e arbusto tem >= 5 unidades
-- [x] Visualização do arbusto mais próximo com círculo amarelo (`_draw`)
+- [x] NPC se move fisicamente até o painel solar mais próximo (`move_toward`)
+- [x] NPC só coleta energia quando chega perto o suficiente (distance_to < 15)
+- [x] NPC prioriza painéis solares COM energia suficiente (filtra durante busca)
+- [x] Renomeado: fome → energia, arbusto → painel solar (temática robô)
+- [x] Sprites do robô criados no Piskel (spritesheet 2x2)
+- [x] Animação `idle` e `dormindo` funcionando no AnimatedSprite2D
+- [x] Indicador de bateria no sprite (amarelo → laranja → vermelho → vazio)
+- [x] Painel solar pixel art criado
+- [x] Botão x1 com pixel art
+- [x] Robô dorme quando energia < 30, volta pro idle quando recarrega
+- [x] Velocidade do NPC sincronizada com multiplicador de tempo (`mundo.velocidade`)
+- [x] Substituído quadrado azul pelo sprite do robô na cena
+- [x] Substituído nó do painel solar pelo sprite pixel art
+- [x] Testado visualmente com novos assets no lugar
 
-**Decisão:** não vai ter minutos no relógio por enquanto. A velocidade atual
-dos dias está num ritmo bom. Pode revisitar depois se sentir necessidade.
-
-**Decisão técnica:** o NPC ainda não se move fisicamente — ele identifica
-e coleta instantaneamente. Isso é "lógica de decisão", não path tracing.
-Path tracing (movimento real) vem no próximo passo.
-
-**Bug conhecido pra corrigir:**
-- [x] `gerou_alimento.emit()` dispara mesmo quando limite foi atingido e
-	  nenhum alimento foi gerado — mover o emit pra depois do `return`
-
-**PRÓXIMO PASSO — amanhã começar por aqui:**
-- [ ] Fazer o NPC se mover fisicamente até o arbusto mais próximo antes
-	  de coletar (pesquisar: "Godot move_toward" e "Godot NavigationAgent2D")
-	  Sugestão: começa com `move_toward` (mais simples, sem obstáculos),
-	  só migra pra NavigationAgent2D se sentir necessidade de desviar de
-	  paredes/construções
+**PRÓXIMO PASSO — começar por aqui:**
+- [ ] Testar com 2+ painéis solares e 2+ robôs independentes
+- [ ] Interface mostrando energia do robô em tela (barra ou número)
+- [ ] Adicionar árvores e pedras no mapa (recursos básicos Era 1)
 
 **Depois disso:**
-- [ ] Interface mostrando fome do NPC em tela (Label ou barra)
-- [ ] Testar com 2+ arbustos e 2+ NPCs pra ver se cada um vai pro mais próximo
-- [ ] Interface minimamente visual pras construções
+- [ ] Primeira construção: "Estação de Recarga"
+- [ ] Mapa procedural com FastNoiseLite (árvores, pedras, painéis espalhados)
+
+---
+
+## Narrativa / Conceito do Jogo
+
+**Premissa:** Um robô acorda sozinho após a extinção da humanidade. Ele
+encontra livros e registros deixados pelos humanos e usa esse conhecimento
+pra reconstruir a civilização — do zero, com meios rudimentares.
+
+**Tom:** levemente engraçado, não pesado. O robô é ingênuo e determinado.
+O humor vem de situações absurdas, não de piadas forçadas.
+
+**Sacada final (Era 5):** o primeiro humano gerado pelos robôs será um
+sprite feio do próprio dev — quebrando a 4ª parede com humor.
 
 ---
 
 ## Visão Geral das Eras
 
-> Marcos de progressão: por enquanto a ideia é ciência/tecnologia
-> (ex: descobrir o fogo, criar uma ferramenta específica). Cultura/sociedade
-> pode entrar mais pra frente, mas ainda não está definido.
+> Marcos de progressão: ciência/tecnologia via "livros encontrados" e
+> descobertas. O robô aprende com os registros humanos.
 
-### Era 1 — Paleolítico (DETALHADA, é a que está em desenvolvimento)
+### Era 1 — Sobrevivência (robô sozinho, recursos primitivos)
 
-**Sensação que quero:** sobrevivência, tudo é difícil, o jogador sente que
-está começando do zero.
+**Sensação:** tudo é difícil, o robô está se adaptando ao mundo abandonado.
 
-**Início:** 1 cabana simples, 3 de população inicial, num mapa aleatório
-cheio de árvores, arbustos e grama.
+**Início:** 1 robô, área limitada do mapa, painéis solares + árvores +
+pedras espalhados aleatoriamente.
 
 **Recursos:**
-- Alimento (mirtilos, coletados de arbustos pequenos)
-- Pedras / gravetos (usados pra caçar animais)
-- Peles e outros recursos de caça
-
-**Ações do jogador:**
-- Coletar de arbustos (alimento, 2 por pessoa)
-- Caçar animais com pedras/gravetos (alimento + peles)
-- Construir cabanas novas (estilo Cities Skylines)
+| Recurso | Como obter | Uso |
+|---|---|---|
+| Energia | Painéis solares | Sobrevivência do robô |
+| Madeira | Árvores | Construções básicas |
+| Pedra | Rochas | Construções básicas |
+| Conhecimento | Bibliotecas/livros | Avançar de Era |
 
 **Construções:**
 | Construção | Função | Capacidade |
 |---|---|---|
-| Cabana do Coletor | Coleta alimentos de arbustos | até 3 pessoas |
-| Cabana do Construtor | Cria outras cabanas | até 3 pessoas |
-| Cabana de Recursos | Coleta recursos numa área predefinida | até 3 pessoas |
-| Hall da Inteligência | Discussão e geração de ciência | até 3 pessoas |
+| Estação de Recarga | Robôs recarregam energia | até 3 robôs |
+| Oficina | Cria novos robôs simples | até 3 robôs |
+| Depósito de Recursos | Coleta madeira/pedra na área | até 3 robôs |
+| Biblioteca | Processa livros → conhecimento | até 3 robôs |
 
-**Mapa mundi (tecla M):** bloqueado, não existe ainda nessa Era.
+**Marco pra avançar:** acumular X conhecimento + construir Y estruturas.
 
-**Comércio:** existe, mas ainda não definido como funciona na prática.
-
-**Marco pra avançar de Era:** ainda não definido (provavelmente ligado a
-descobrir o fogo e/ou ferramentas melhores).
+**Mapa mundi:** bloqueado.
 
 ---
 
-### Era 2 — Neolítico (DIREÇÃO GERAL, ainda não detalhada)
+### Era 2 — Reconstrução (primeiros companheiros)
 
-**Sensação que quero pensar:** a vila para de só sobreviver e começa a se
-fixar/organizar — primeira sensação de "civilização".
+**Sensação:** o robô começa a entender como os humanos funcionavam.
 
-**Temas pra explorar quando chegar a hora:**
-- Agricultura (plantar em vez de só coletar)
-- Domesticação de animais
-- Comércio evolui: trocas entre NPCs (ainda não dinheiro)
-- Mapa mundi continua bloqueado
+**Recursos novos:** Sucata do chão (coletada por robô coletor grande)
 
-### Era 3 — Antiguidade (DIREÇÃO GERAL, ainda não detalhada)
+**Temas:**
+- Criar robôs com funções específicas
+- Robô Coletor de Sucata Grande (primeiro robô especializado)
+- Produção básica de peças (não só coletar do chão)
+- Comércio/troca entre grupos de robôs
+- Mapa mundi ainda bloqueado
 
-**Sensação que quero pensar:** a vila vira algo maior, com identidade —
-comércio organizado, primeiras formas de registro/escrita.
+### Era 3 — Sociedade (civilização de robôs)
 
-**Temas pra explorar quando chegar a hora:**
-- Comércio mais estruturado (possivelmente moeda/trocas formais)
-- Escrita / registro de conhecimento
-- Mapa mundi (tecla M) provavelmente desbloqueia aqui
+**Sensação:** uma "civilização" começa a tomar forma.
 
-### Era 4 — Industrial (DIREÇÃO GERAL, ainda não detalhada)
+**Recursos novos:** Ferro (mineração básica)
 
-**Sensação que quero pensar:** salto de escala — produção em massa, a vila
-vira algo parecido com uma cidade pequena.
+**Temas:**
+- Mineração de ferro
+- Redes de comunicação entre robôs
+- Registro de conhecimento próprio
+- **Mapa mundi desbloqueia aqui** (explorar regiões com recursos únicos)
 
-**Temas pra explorar quando chegar a hora:**
-- Geração de energia
-- Produção em massa / fábricas
-- Big jump na população e complexidade de construções
+**Mapa mundi:**
+- Cada região tem bioma próprio (floresta, deserto, ártico)
+- Recursos exclusivos por bioma
+- Robôs exploradores enviados pelo jogador
+- Comércio entre colônias
 
-### Era 5 — Nuclear (DIREÇÃO GERAL, ainda não detalhada)
+### Era 4 — Industrial (escala total)
 
-**Sensação que quero pensar:** auge tecnológico, ciência no centro de tudo —
-é o "fim de jogo".
+**Recursos novos:** Aço, Energia em larga escala
 
-**Temas pra explorar quando chegar a hora:**
-- Ciência avançada como foco principal
-- Energia nuclear
-- O que significa "vencer" o jogo nessa Era ainda é uma pergunta em aberto
+**Temas:**
+- Fábricas de robôs automatizadas
+- Geração de energia industrial
+- Expansão do mapa mundi
+
+### Era 5 — Pós-humano (fim de jogo)
+
+**Sensação:** os robôs superaram os humanos. O que fazem com isso?
+
+**Temas:**
+- Materiais avançados, fusão nuclear
+- Recriar humanos a partir do DNA encontrado nos arquivos
+- **Sacada:** primeiro humano gerado = sprite feio do dev (humor + 4ª parede)
+- "Vencer" = recriar a humanidade? Em aberto.
 
 ---
 
-## Ideias soltas (não esquecer, mas sem prioridade ainda)
+## Ideias soltas (não esquecer)
 
-- Comércio entre NPCs já na Era 1, expande na Era 2
-- Sistema de ciência: ainda não decidido como será a coleta/geração
-- Mapa mundi (tecla M): só desbloqueia a partir da Era 3
-- Progressão de Era estilo Humanity: marcos de ciência/história/linguagem,
-  não só "encher uma barrinha de recurso"
+- Overstress: robô sem dormir por muito tempo → estresse → desliga
+- Humor: robô interpreta livros humanos de forma literal/errada
+- Progressão visual: robô muda de aparência entre Eras
+- Cada bioma no mapa mundi tem recurso único e desafio próprio
+- Comércio entre colônias no mapa mundi (Era 3+)
 
 ---
 
-## Decisões técnicas (pra não esquecer o "porquê")
+## Decisões técnicas
 
-- Tempo: usa acumulador com subtração (`segundos -= 3.5`) em vez de zerar,
-  pra não perder a sobra de delta entre frames
-- Nós de UI acessados via `@onready var` no topo do script, não dentro de
-  `_process`, pra não ficar buscando o nó toda hora
-- Velocidade do tempo: variável `velocidade` multiplicada no delta dentro de
-  `calTempo`, não altera o delta original do Godot
-- Signals usados pra comunicação entre scripts (ex: `passou_uma_hora`,
-  `gerou_alimento`) em vez de checar variáveis todo frame no `_process`
-- Arbustos adicionados a um grupo ("Arbustos") pra NPC achar todos via
-  `get_tree().get_nodes_in_group()` sem caminhos fixos
+- Tempo: acumulador com subtração (`segundos -= 3.5`), sem perda de delta
+- Nós de UI via `@onready var` no topo, não dentro de `_process`
+- Velocidade do tempo: variável `velocidade` multiplicada no delta
+- Signals pra comunicação entre scripts (`passou_uma_hora`, `gerou_alimento`)
+- Robôs/painéis em grupos Godot pra busca dinâmica sem caminhos fixos
+- NPC usa `alvo_temporario` durante busca pra não sobrescrever alvo atual
+- Animações condicionais por código, não por FPS
