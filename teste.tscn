@@ -1,188 +1,97 @@
 [gd_scene format=3 uid="uid://6crl42ocl151"]
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
-[ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/alimento.gd" id="2_7w86a"]
 [ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/pessoa.gd" id="3_s2wow"]
+[ext_resource type="Texture2D" uid="uid://dboqagvsald7a" path="res://assets/New Piskel.png" id="4_3iyrq"]
+[ext_resource type="Texture2D" uid="uid://c6u25apfeu8ua" path="res://assets/x1.png" id="5_4iivt"]
+[ext_resource type="Texture2D" uid="uid://cmsm3wfxfqpqb" path="res://assets/New Piskel-4.png.png" id="6_cgmdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iivt"]
+atlas = ExtResource("4_3iyrq")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmdw"]
+atlas = ExtResource("4_3iyrq")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grbdc"]
+atlas = ExtResource("4_3iyrq")
+region = Rect2(0, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suirj"]
+atlas = ExtResource("6_cgmdw")
+region = Rect2(320, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3wv5"]
+atlas = ExtResource("4_3iyrq")
+region = Rect2(320, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddwwg"]
+atlas = ExtResource("6_cgmdw")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul6x0"]
+atlas = ExtResource("6_cgmdw")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5rjx"]
+atlas = ExtResource("6_cgmdw")
+region = Rect2(0, 320, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sx3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iivt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgmdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbdc")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suirj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3wv5")
+}],
+"loop": 1,
+"name": &"noenergy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddwwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul6x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5rjx")
+}],
+"loop": 1,
+"name": &"slpeepy",
+"speed": 5.0
+}]
 
 [node name="Mundo" type="Node2D" unique_id=1434500640]
 script = ExtResource("1_o02vu")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1548276685 groups=["Arbustos"]]
-position = Vector2(246, 42)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=1471616288]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D/ColorRect" unique_id=1384008387]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Node2D2" type="Node2D" parent="." unique_id=1449539556 groups=["Arbustos"]]
-position = Vector2(344, 295)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D2" unique_id=1170001444]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D2/ColorRect" unique_id=1075117186]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Node2D3" type="Node2D" parent="." unique_id=33077672 groups=["Arbustos"]]
-position = Vector2(985, 14)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D3" unique_id=253575439]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D3/ColorRect" unique_id=2070136381]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Node2D4" type="Node2D" parent="." unique_id=959333441 groups=["Arbustos"]]
-position = Vector2(48, 40)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D4" unique_id=597202927]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D4/ColorRect" unique_id=1197445216]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Node2D5" type="Node2D" parent="." unique_id=185261552 groups=["Arbustos"]]
-position = Vector2(182, 268)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D5" unique_id=396732508]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D5/ColorRect" unique_id=1778330022]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Node2D6" type="Node2D" parent="." unique_id=721396652 groups=["Arbustos"]]
-position = Vector2(444, 178)
-
-[node name="ColorRect" type="ColorRect" parent="Node2D6" unique_id=1169956259]
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 44.0
-color = Color(0.09803922, 0.64705884, 0.03529412, 1)
-script = ExtResource("2_7w86a")
-
-[node name="QTD" type="Label" parent="Node2D6/ColorRect" unique_id=1087541098]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.7875
-anchor_right = 1.0
-anchor_bottom = 0.7875
-offset_left = -76.0
-offset_top = -31.5
-offset_right = -40.0
-offset_bottom = -8.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="pessoa" type="Node2D" parent="." unique_id=1886699581]
+[node name="robo" type="Node2D" parent="." unique_id=1886699581]
 position = Vector2(1, 606)
 script = ExtResource("3_s2wow")
 
-[node name="ColorRect" type="ColorRect" parent="pessoa" unique_id=313730934]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.105882354, 0.06666667, 0.48235294, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo" unique_id=2139683817]
+position = Vector2(49, 44.500008)
+scale = Vector2(0.30625, 0.27812484)
+sprite_frames = SubResource("SpriteFrames_0sx3b")
+animation = &"noenergy"
 
 [node name="Label" type="Label" parent="." unique_id=605276492]
 offset_left = 77.0
@@ -228,40 +137,41 @@ offset_bottom = 61.0
 text = "PAUSA"
 metadata/_edit_use_anchors_ = true
 
-[node name="x1" type="Button" parent="." unique_id=1319104480]
-offset_left = 63.0
-offset_top = 30.0
-offset_right = 81.0
-offset_bottom = 61.0
-text = "1"
-metadata/_edit_use_anchors_ = true
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1633270838]
+offset_left = 60.0
+offset_top = 9.0
+offset_right = 147.0
+offset_bottom = 103.0
+texture_normal = ExtResource("5_4iivt")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="x2" type="Button" parent="." unique_id=218223873]
-offset_left = 84.0
+offset_left = 169.0
 offset_top = 30.0
-offset_right = 102.0
+offset_right = 187.0
 offset_bottom = 61.0
 text = "2"
 metadata/_edit_use_anchors_ = true
 
 [node name="x3" type="Button" parent="." unique_id=599098430]
-offset_left = 106.0
+offset_left = 193.0
 offset_top = 30.0
-offset_right = 124.0
+offset_right = 211.0
 offset_bottom = 61.0
 text = "3"
 metadata/_edit_use_anchors_ = true
 
 [node name="x4" type="Button" parent="." unique_id=898423978]
-offset_left = 128.0
+offset_left = 240.0
 offset_top = 30.0
-offset_right = 146.0
+offset_right = 258.0
 offset_bottom = 61.0
 text = "4"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
-[connection signal="pressed" from="x1" to="." method="_on_x_1_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="x2" to="." method="_on_x_2_pressed"]
 [connection signal="pressed" from="x3" to="." method="_on_x_3_pressed"]
 [connection signal="pressed" from="x4" to="." method="_on_x_4_pressed"]

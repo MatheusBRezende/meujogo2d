@@ -47,3 +47,7 @@ func _on_x_4_pressed() -> void:
 
 func _on_stop_pressed() -> void:
 	velocidade = 0
+
+
+func _on_texture_button_pressed() -> void:
+	velocidade = 1
