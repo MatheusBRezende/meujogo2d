@@ -5,9 +5,10 @@ var horas = 0
 var segundos = 0.0
 var velocidade = 1
 var velocidade_anterior = 0
+@onready var textdias: Label = $CanvasLayer/Dias
+@onready var texthoras: Label = $CanvasLayer/Horas
+@onready var velocidade_tempo: Label = $CanvasLayer/velocidade_tempo
 
-@onready var texthoras = get_node("Horas")
-@onready var textdias = get_node("Dias")
 signal passou_uma_hora
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +36,7 @@ func calTempo(delta) -> void:
 		
 
 func _on_somar_pressed():
-	if velocidade < 4:
+	if velocidade < 5:
 		velocidade += 1
 	atualizar_label()
 
@@ -45,13 +46,14 @@ func _on_diminuir_pressed():
 	atualizar_label()
 
 func atualizar_label():
-	$velocidade_tempo.text = str(velocidade) + "x"
+	velocidade_tempo.text = str(velocidade) + "x"
 
 func _on_stop_pressed() -> void:
 	if velocidade == 0:
 		velocidade = velocidade_anterior
-		$velocidade_tempo.text = str(velocidade) + "x"
+		velocidade_tempo.text = str(velocidade) + "x"
 	else:
 		velocidade_anterior = velocidade
 		velocidade = 0
-		$velocidade_tempo.text = "Pausado"
+		velocidade_tempo.text = "Pausado"
+	print("Pausado")

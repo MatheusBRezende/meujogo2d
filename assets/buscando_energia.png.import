@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmsm3wfxfqpqb"
-path="res://.godot/imported/New Piskel-4.png.png-6eacba15a4e4258cb1af1cdb4f3bd76b.ctex"
+uid="uid://b1rladia3d4yh"
+path="res://.godot/imported/buscando_energia.png-4a9f5d11e0a6c6630967f235557fb7d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/New Piskel-4.png.png"
-dest_files=["res://.godot/imported/New Piskel-4.png.png-6eacba15a4e4258cb1af1cdb4f3bd76b.ctex"]
+source_file="res://assets/buscando_energia.png"
+dest_files=["res://.godot/imported/buscando_energia.png-4a9f5d11e0a6c6630967f235557fb7d8.ctex"]
 
 [params]
 

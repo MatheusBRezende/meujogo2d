@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://6crl42ocl151"]
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
+[ext_resource type="PackedScene" uid="uid://cjetdpwc8rg2x" path="res://scenes/ui_robo.tscn" id="2_grbdc"]
 [ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/robo.gd" id="3_s2wow"]
-[ext_resource type="Texture2D" uid="uid://dboqagvsald7a" path="res://assets/New Piskel.png" id="4_3iyrq"]
-[ext_resource type="Texture2D" uid="uid://cmsm3wfxfqpqb" path="res://assets/New Piskel-4.png.png" id="6_cgmdw"]
+[ext_resource type="Texture2D" uid="uid://dboqagvsald7a" path="res://assets/idle.png" id="4_3iyrq"]
+[ext_resource type="Texture2D" uid="uid://cmsm3wfxfqpqb" path="res://assets/pouca_bateria.png" id="6_cgmdw"]
 [ext_resource type="Texture2D" uid="uid://ccr5l82i5qvmr" path="res://assets/painelsolar.png" id="6_grbdc"]
 [ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/painel_solar.gd" id="7_grbdc"]
 
@@ -81,18 +82,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sx3b"]
+size = Vector2(192.65308, 204.94397)
+
 [node name="Mundo" type="Node2D" unique_id=1434500640]
 script = ExtResource("1_o02vu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1109005106]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+color = Color(0, 0.43529412, 0.047058824, 1)
 
 [node name="robo" type="Node2D" parent="." unique_id=796388850]
 position = Vector2(1, 606)
 script = ExtResource("3_s2wow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo" unique_id=2122039043]
-position = Vector2(49, 44.500008)
+position = Vector2(49, 44.5)
 scale = Vector2(0.30625, 0.27812484)
 sprite_frames = SubResource("SpriteFrames_0sx3b")
 animation = &"noenergy"
+
+[node name="Area2D" type="Area2D" parent="robo" unique_id=773925547]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="robo/Area2D" unique_id=1340286449]
+position = Vector2(50.5, 41.5)
+scale = Vector2(0.30625, 0.27812484)
+shape = SubResource("RectangleShape2D_0sx3b")
 
 [node name="robo2" type="Node2D" parent="." unique_id=205577201]
 position = Vector2(1773, 197)
@@ -103,47 +120,6 @@ position = Vector2(49, 44.500008)
 scale = Vector2(0.30625, 0.27812484)
 sprite_frames = SubResource("SpriteFrames_0sx3b")
 animation = &"sleepy"
-
-[node name="Label" type="Label" parent="." unique_id=960074882]
-offset_left = 810.0
-offset_top = 23.0
-offset_right = 846.0
-offset_bottom = 46.0
-text = "DIAS"
-metadata/_edit_use_anchors_ = true
-
-[node name="Dias" type="Label" parent="." unique_id=1499849192]
-offset_left = 860.0
-offset_top = 23.0
-offset_right = 897.0
-offset_bottom = 46.0
-text = "0"
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Label2" type="Label" parent="." unique_id=1304858195]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 710.0
-offset_top = 22.0
-offset_right = 756.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "HORA"
-metadata/_edit_use_anchors_ = true
-
-[node name="Horas" type="Label" parent="." unique_id=337205440]
-offset_left = 765.0
-offset_top = 23.0
-offset_right = 793.0
-offset_bottom = 46.0
-text = "0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="painel_solar" type="Sprite2D" parent="." unique_id=448918405 groups=["Fonte"]]
 position = Vector2(1000, 722)
@@ -209,38 +185,88 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="somar" type="Button" parent="." unique_id=1075573998]
-offset_left = 121.0
-offset_top = 22.0
-offset_right = 152.0
-offset_bottom = 53.0
-text = "+"
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1033959045]
+position = Vector2(961, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1402752594]
+
+[node name="ui_robo" parent="CanvasLayer" unique_id=1919683001 instance=ExtResource("2_grbdc")]
+visible = false
+offset_left = 1.0
+offset_right = 1.0
+
+[node name="txt_Dias" type="Label" parent="CanvasLayer" unique_id=960074882]
+offset_left = 119.0
+offset_top = -2.0
+offset_right = 155.0
+offset_bottom = 21.0
+text = "DIAS"
 metadata/_edit_use_anchors_ = true
 
-[node name="diminuir" type="Button" parent="." unique_id=1832110260]
-offset_top = 22.0
-offset_right = 31.0
-offset_bottom = 53.0
-text = "-"
-metadata/_edit_use_anchors_ = true
-
-[node name="stop" type="Button" parent="." unique_id=1464133087]
+[node name="Dias" type="Label" parent="CanvasLayer" unique_id=1499849192]
 offset_left = 162.0
-offset_top = 22.0
-offset_right = 222.0
-offset_bottom = 53.0
-text = "PAUSA"
+offset_right = 199.0
+offset_bottom = 23.0
+text = "0"
+horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="velocidade_tempo" type="Label" parent="." unique_id=1182222073]
-offset_left = 31.0
-offset_top = 22.0
-offset_right = 121.0
-offset_bottom = 52.0
-text = "1"
+[node name="txt_Horas" type="Label" parent="CanvasLayer" unique_id=1304858195]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1919.0
+offset_top = -541.0
+offset_right = -1873.0
+offset_bottom = -518.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "HORA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Horas" type="Label" parent="CanvasLayer" unique_id=337205440]
+offset_left = 50.0
+offset_right = 78.0
+offset_bottom = 23.0
+text = "0"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="somar" to="." method="_on_somar_pressed"]
-[connection signal="pressed" from="diminuir" to="." method="_on_diminuir_pressed"]
-[connection signal="pressed" from="stop" to="." method="_on_stop_pressed"]
+[node name="somar" type="Button" parent="CanvasLayer" unique_id=1075573998]
+offset_left = 121.0
+offset_top = 25.0
+offset_right = 152.0
+offset_bottom = 56.0
+text = "+"
+metadata/_edit_use_anchors_ = true
+
+[node name="diminuir" type="Button" parent="CanvasLayer" unique_id=1832110260]
+offset_top = 25.0
+offset_right = 31.0
+offset_bottom = 56.0
+text = "-"
+metadata/_edit_use_anchors_ = true
+
+[node name="stop" type="Button" parent="CanvasLayer" unique_id=1464133087]
+offset_left = 163.0
+offset_top = 25.0
+offset_right = 223.0
+offset_bottom = 56.0
+text = "PAUSA"
+metadata/_edit_use_anchors_ = true
+
+[node name="velocidade_tempo" type="Label" parent="CanvasLayer" unique_id=1182222073]
+offset_left = 31.0
+offset_top = 25.0
+offset_right = 121.0
+offset_bottom = 55.0
+text = "1x"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="robo/Area2D" to="robo" method="_on_area_2d_input_event"]
+[connection signal="pressed" from="CanvasLayer/somar" to="." method="_on_somar_pressed"]
+[connection signal="pressed" from="CanvasLayer/diminuir" to="." method="_on_diminuir_pressed"]
+[connection signal="pressed" from="CanvasLayer/stop" to="." method="_on_stop_pressed"]

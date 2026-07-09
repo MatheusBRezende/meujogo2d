@@ -3,46 +3,45 @@
 Caderno pessoal de progresso. Atualizar TODA sessão antes de fechar o Godot:
 o que foi feito + qual o próximo passo.
 
+**Regra:** antes de adicionar qualquer coisa nova, pergunta — "isso me aproxima
+de vencer a Era 1?" Se não, vai em "Ideias futuras".
+
 ---
 
 ## 2026-07-04
 
 **Feito:**
-- [x] NPC se move fisicamente até o painel solar mais próximo (`move_toward`)
-- [x] NPC só coleta energia quando chega perto o suficiente (distance_to < 15)
-- [x] NPC prioriza painéis solares COM energia suficiente (filtra durante busca)
-- [x] Renomeado: fome → energia, arbusto → painel solar (temática robô)
-- [x] Sprites do robô criados no Piskel (spritesheet 2x2)
-- [x] Animação `idle`, `sleepy` e `noenergy` funcionando
-- [x] Indicador de bateria no sprite (amarelo → laranja → vermelho → vazio)
-- [x] Painel solar pixel art criado
-- [x] Robô dorme quando energia < 30, volta pro idle quando recarrega
-- [x] Robô para de se mover quando energia = 0
-- [x] Velocidade do NPC sincronizada com multiplicador de tempo
-- [x] Substituído quadrado azul pelo sprite do robô na cena
-- [x] Testado com 2+ robôs e 2+ painéis — cada um vai pro mais próximo livre
-- [x] Sistema de `ocupado` no painel pra evitar dois robôs no mesmo alvo
-- [x] UI de velocidade reformulada: botões + e - com label mostrando "2x"
-- [x] Botão pause/unpause restaura velocidade anterior corretamente
+- [x] Sistema de tempo (horas/dias), independente de FPS
+- [x] UI de velocidade: botões + e - com pause/unpause
+- [x] Robô se move até painel solar mais próximo livre
+- [x] Robô coleta energia ao chegar no painel
+- [x] Múltiplos robôs funcionando independentes (sistema `ocupado`)
+- [x] Animações: idle, sleepy, noenergy
+- [x] Robô para quando energia = 0
 
-**PRÓXIMO PASSO — amanhã começar por aqui:**
-- [ ] Interface mostrando energia de cada robô em tela (barra ou número)
-      Dica: ProgressBar ou Label acima do sprite do robô
+## 2026-07-08
 
-**Depois disso (foco em funcionalidades, assets depois):**
-- [ ] Sistema de coleta de madeira (árvore como nó simples, sem asset bonito)
-- [ ] Sistema de coleta de pedra (mesma lógica da madeira)
-- [ ] Armazém global de recursos (madeira, pedra, energia acumulada)
-- [ ] Primeira construção: "Estação de Recarga" (placeholder geométrico)
-- [ ] Mapa procedural com FastNoiseLite
+- [x] Melhorado o sistema de tempo com pequenos ajustes
+- [x] Melhorado o script de robo + adições como nome, tarefa atual e adicionado um sistema de zoom ao clicar no robo e mostrar os seus status
+- [x] Adicionado uma camêra ao mundo
+- [x] Desenvolvido uma UI para mostrar os status do robo
 
----
+**PRÓXIMO PASSO — começar por aqui:**
+- [ ] Coleta de madeira (árvore como nó simples, mesma lógica do painel solar)
+- [ ] Ajuste na possibilidade de mover a camera com a roda do mouse
 
-## Decisão de desenvolvimento
+**Era 1 — checklist do mínimo jogável:**
+- [x] Sistema de tempo
+- [x] Robô coleta energia (sobrevivência básica)
+- [ ] Robô coleta madeira
+- [ ] Robô coleta pedra
+- [ ] Armazém global (variáveis: madeira, pedra, conhecimento)
+- [ ] Interface mostrando totais do armazém
+- [ ] Primeira construção (Oficina ou Biblioteca — só uma por enquanto)
+- [ ] Condição de avançar de Era (acumular X conhecimento)
 
-**Assets depois, funcionalidade agora.** O jogo vai rodar com quadrados e
-círculos coloridos até os sistemas estarem prontos. Refatoração visual
-completa só quando a Era 1 estiver jogável do início ao fim.
+Quando todos esses itens estiverem marcados → **Era 1 está jogável**.
+Só então refatora assets, adiciona features extras, polimento visual.
 
 ---
 
@@ -61,12 +60,7 @@ sprite feio do próprio dev — quebrando a 4ª parede com humor.
 
 ## Visão Geral das Eras
 
-> Marcos de progressão: ciência/tecnologia via "livros encontrados" e
-> descobertas. O robô aprende com os registros humanos.
-
-### Era 1 — Sobrevivência (robô sozinho, recursos primitivos)
-
-**Sensação:** tudo é difícil, o robô está se adaptando ao mundo abandonado.
+### Era 1 — Sobrevivência (EM DESENVOLVIMENTO)
 
 **Recursos:**
 | Recurso | Como obter | Uso |
@@ -74,71 +68,52 @@ sprite feio do próprio dev — quebrando a 4ª parede com humor.
 | Energia | Painéis solares | Sobrevivência do robô |
 | Madeira | Árvores | Construções básicas |
 | Pedra | Rochas | Construções básicas |
-| Conhecimento | Bibliotecas/livros | Avançar de Era |
+| Conhecimento | Biblioteca | Avançar de Era |
 
 **Construções:**
-| Construção | Função | Capacidade |
-|---|---|---|
-| Estação de Recarga | Robôs recarregam energia | até 3 robôs |
-| Oficina | Cria novos robôs simples | até 3 robôs |
-| Depósito de Recursos | Coleta madeira/pedra na área | até 3 robôs |
-| Biblioteca | Processa livros → conhecimento | até 3 robôs |
+| Construção | Função |
+|---|---|
+| Estação de Recarga | Robôs recarregam energia |
+| Oficina | Cria novos robôs |
+| Depósito de Recursos | Coleta madeira/pedra |
+| Biblioteca | Gera conhecimento |
 
-**Marco pra avançar:** acumular X conhecimento + construir Y estruturas.
-**Mapa mundi:** bloqueado.
+**Marco pra avançar:** acumular X conhecimento via Biblioteca.
 
 ---
 
-### Era 2 — Reconstrução (primeiros companheiros)
+### Era 2 — Reconstrução
+Recursos novos: Sucata. Primeiros robôs especializados. Mapa mundi bloqueado.
 
-**Recursos novos:** Sucata do chão
-
-**Temas:**
-- Criar robôs com funções específicas
-- Robô Coletor de Sucata Grande (primeiro robô especializado)
-- Comércio/troca entre grupos de robôs
-- Mapa mundi ainda bloqueado
-
-### Era 3 — Sociedade (civilização de robôs)
-
-**Recursos novos:** Ferro (mineração básica)
-
-**Temas:**
-- Mineração de ferro, redes de comunicação
-- **Mapa mundi desbloqueia aqui**
-- Cada região: bioma próprio, recursos exclusivos, comércio entre colônias
+### Era 3 — Sociedade
+Recursos novos: Ferro. Mapa mundi desbloqueia. Biomas com recursos únicos.
 
 ### Era 4 — Industrial
+Recursos novos: Aço. Fábricas automatizadas.
 
-**Recursos novos:** Aço, energia em larga escala
-
-**Temas:** Fábricas automatizadas, expansão do mapa mundi
-
-### Era 5 — Pós-humano (fim de jogo)
-
-**Temas:**
-- Recriar humanos a partir de DNA nos arquivos
-- **Sacada:** primeiro humano = sprite feio do dev (humor + 4ª parede)
-- "Vencer" = recriar a humanidade? Em aberto.
+### Era 5 — Pós-humano
+Recriar humanos. Primeiro humano = sprite feio do dev. Fim de jogo.
 
 ---
 
-## Ideias soltas (não esquecer)
+## Ideias futuras (não agora, não atrapalhar Era 1)
 
-- Overstress: robô sem dormir → estresse → desliga
-- Humor: robô interpreta livros humanos de forma literal/errada
-- Progressão visual: robô muda de aparência entre Eras
-- Cada bioma no mapa mundi tem recurso único e desafio próprio
+- Click no robô pra ver status individual
+- Emojis/conversas aleatórias entre robôs
+- Overstress: robô sem dormir → desliga
+- Progressão visual do robô entre Eras
+- Mapa procedural com FastNoiseLite
+- Mapa mundi com biomas (Era 3+)
+- Comércio entre colônias
 
 ---
 
 ## Decisões técnicas
 
 - Tempo: acumulador com subtração (`segundos -= 3.5`), sem perda de delta
-- Nós de UI via `@onready var` no topo, não dentro de `_process`
 - Velocidade do tempo: variável `velocidade` multiplicada no delta
 - Signals pra comunicação entre scripts (`passou_uma_hora`, `gerou_energia`)
 - Robôs/painéis em grupos Godot pra busca dinâmica sem caminhos fixos
-- NPC usa `alvo_temporario` durante busca pra não sobrescrever alvo atual
-- Animações condicionais por código, não por FPS
 - Sistema `ocupado` no painel: marcado ao definir alvo, liberado ao coletar
+- Animações condicionais por código, não por FPS
+- Assets são placeholder — refatoração visual só após Era 1 jogável

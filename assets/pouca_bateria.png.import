@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqie5feagw846"
-path="res://.godot/imported/noenergy3.png-607c4b9f8b4b67b27009ab98ee4ff951.ctex"
+uid="uid://cmsm3wfxfqpqb"
+path="res://.godot/imported/pouca_bateria.png-fa565a1397655667f56476f368114fcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/New Piskel-4.png/noenergy3.png"
-dest_files=["res://.godot/imported/noenergy3.png-607c4b9f8b4b67b27009ab98ee4ff951.ctex"]
+source_file="res://assets/pouca_bateria.png"
+dest_files=["res://.godot/imported/pouca_bateria.png-fa565a1397655667f56476f368114fcf.ctex"]
 
 [params]
 

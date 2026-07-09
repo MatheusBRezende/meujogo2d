@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jr0wgi8mla3r"
-path="res://.godot/imported/noenergy2.png-75968121c825c433cda5bd321f87c7ae.ctex"
+uid="uid://dboqagvsald7a"
+path="res://.godot/imported/idle.png-600a6709c1a21ab5f528af7b11a02560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/New Piskel-4.png/noenergy2.png"
-dest_files=["res://.godot/imported/noenergy2.png-75968121c825c433cda5bd321f87c7ae.ctex"]
+source_file="res://assets/idle.png"
+dest_files=["res://.godot/imported/idle.png-600a6709c1a21ab5f528af7b11a02560.ctex"]
 
 [params]
 
