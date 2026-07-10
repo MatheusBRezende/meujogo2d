@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://6crl42ocl151"]
 
 [ext_resource type="Script" uid="uid://bk4ye3q6hh6y8" path="res://scripts/tempo.gd" id="1_o02vu"]
+[ext_resource type="Script" uid="uid://dtf12hc2dwymc" path="res://scripts/gerenciador.gd" id="1_ul6x0"]
 [ext_resource type="PackedScene" uid="uid://cjetdpwc8rg2x" path="res://scenes/ui_robo.tscn" id="2_grbdc"]
 [ext_resource type="Script" uid="uid://t4qjoqueva7a" path="res://scripts/robo.gd" id="3_s2wow"]
 [ext_resource type="Texture2D" uid="uid://dboqagvsald7a" path="res://assets/idle.png" id="4_3iyrq"]
 [ext_resource type="Texture2D" uid="uid://cmsm3wfxfqpqb" path="res://assets/pouca_bateria.png" id="6_cgmdw"]
 [ext_resource type="Texture2D" uid="uid://ccr5l82i5qvmr" path="res://assets/painelsolar.png" id="6_grbdc"]
+[ext_resource type="Script" uid="uid://bg8ckd8xflq4y" path="res://scripts/camera_2d.gd" id="7_ddwwg"]
 [ext_resource type="Script" uid="uid://cuifr2x7kpj8a" path="res://scripts/painel_solar.gd" id="7_grbdc"]
+[ext_resource type="Script" uid="uid://x0jflku5qjk1" path="res://scripts/recursos.gd" id="9_ul6x0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4iivt"]
 atlas = ExtResource("4_3iyrq")
@@ -94,7 +97,7 @@ offset_bottom = 1080.0
 mouse_filter = 1
 color = Color(0, 0.43529412, 0.047058824, 1)
 
-[node name="robo" type="Node2D" parent="." unique_id=796388850]
+[node name="robo" type="Node2D" parent="." unique_id=796388850 groups=["Robos"]]
 position = Vector2(1, 606)
 script = ExtResource("3_s2wow")
 
@@ -111,15 +114,22 @@ position = Vector2(50.5, 41.5)
 scale = Vector2(0.30625, 0.27812484)
 shape = SubResource("RectangleShape2D_0sx3b")
 
-[node name="robo2" type="Node2D" parent="." unique_id=205577201]
-position = Vector2(1773, 197)
+[node name="robo2" type="Node2D" parent="." unique_id=1938268452 groups=["Robos"]]
+position = Vector2(1686, 123)
 script = ExtResource("3_s2wow")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo2" unique_id=680113557]
-position = Vector2(49, 44.500008)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="robo2" unique_id=2036399039]
+position = Vector2(49, 44.5)
 scale = Vector2(0.30625, 0.27812484)
 sprite_frames = SubResource("SpriteFrames_0sx3b")
-animation = &"sleepy"
+animation = &"noenergy"
+
+[node name="Area2D" type="Area2D" parent="robo2" unique_id=910904591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="robo2/Area2D" unique_id=465952388]
+position = Vector2(50.5, 41.5)
+scale = Vector2(0.30625, 0.27812484)
+shape = SubResource("RectangleShape2D_0sx3b")
 
 [node name="painel_solar" type="Sprite2D" parent="." unique_id=448918405 groups=["Fonte"]]
 position = Vector2(1000, 722)
@@ -184,9 +194,6 @@ scale = Vector2(4, 4)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1033959045]
-position = Vector2(961, 540)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1402752594]
 
@@ -266,7 +273,23 @@ text = "1x"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Node2D" type="Node2D" parent="." unique_id=405563668]
+position = Vector2(375, 272)
+script = ExtResource("9_ul6x0")
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D" unique_id=1698754595]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gerenciador" type="Node2D" parent="." unique_id=591699039]
+script = ExtResource("1_ul6x0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1033959045]
+position = Vector2(961, 540)
+script = ExtResource("7_ddwwg")
+
 [connection signal="input_event" from="robo/Area2D" to="robo" method="_on_area_2d_input_event"]
+[connection signal="input_event" from="robo2/Area2D" to="robo2" method="_on_area_2d_input_event"]
 [connection signal="pressed" from="CanvasLayer/somar" to="." method="_on_somar_pressed"]
 [connection signal="pressed" from="CanvasLayer/diminuir" to="." method="_on_diminuir_pressed"]
 [connection signal="pressed" from="CanvasLayer/stop" to="." method="_on_stop_pressed"]

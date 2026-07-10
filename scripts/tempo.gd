@@ -15,6 +15,7 @@ signal passou_uma_hora
 func _process(delta) -> void:
 	calTempo(delta)
 
+
 # Função que simula a passagem de tempo tanto em horas quanto em dias
 # Acresenta 1 dia acada 24 horas
 func calTempo(delta) -> void:

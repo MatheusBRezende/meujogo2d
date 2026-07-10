@@ -98,14 +98,15 @@ Recriar humanos. Primeiro humano = sprite feio do dev. Fim de jogo.
 
 ## Ideias futuras (não agora, não atrapalhar Era 1)
 
-- Click no robô pra ver status individual
+- Click no robô pra ver status individual ✅
 - Emojis/conversas aleatórias entre robôs
 - Overstress: robô sem dormir → desliga
 - Progressão visual do robô entre Eras
 - Mapa procedural com FastNoiseLite
-- Mapa mundi com biomas (Era 3+)
+- Mapa mundi com outras colônias (Era 3+)
 - Comércio entre colônias
-
+- Adicionar menu que permita alterar teclas
+- Implementar uma forma de wandar aleatoriamente no mapa para robos
 ---
 
 ## Decisões técnicas

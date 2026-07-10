@@ -6,10 +6,13 @@ extends Node2D
 var tarefa_atual = "Idle"
 var velocidade = 20
 var fonte_mais_proxima: Node2D = null
+var recurso_mais_proximo: Node2D = null
 var energia = 100
 var selecionado: bool = false
 var nomes = ["BOLT", "RUST", "BYTE", "NOVA", "ECHO"]
 var nome_robo = ""
+var inventario = {"graveto": 0, "pedra": 0, "madeira":0, "minerio_de_ferro":0}
+var indice = randi() % nomes.size()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +20,8 @@ func _ready() -> void:
 	mundo.passou_uma_hora.connect(dormir)
 	$AnimatedSprite2D.speed_scale = 0.04
 	$AnimatedSprite2D.play("idle")
-	nome_robo = nomes[randi() % nomes.size()]
+	nome_robo = nomes[indice]
+	nomes.remove_at(indice)
 
 func dormir():
 	tarefa_atual = "Parado"
@@ -89,11 +93,17 @@ func coletar_energia():
 			fonte_mais_proxima.ocupado = false
 			fonte_mais_proxima = null
 
+func coletar_recurso(recurso: Node2D):
+	tarefa_atual = "Coletando Energia"
+	if recurso_mais_proximo != null:
+		inventario[recurso.tipo_recurso] += recurso.quantidade
+		recurso.queue_free()
+
 func calFome():
 	energia -= 5
 	print("Energia: ", energia)
 
-#Função que detecta o input do mouse esquerdo e da um zoom na camera no robo
+#Função que detecta o input do mouse esquerdo e da um zoom no robo
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event = event as InputEventMouseButton
@@ -109,3 +119,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				camera_2d.zoom = Vector2(2.0,2.0)
 				selecionado = true
 				ui_robo.visible = true
+				
+func desselecionar():
+	selecionado = false
+	camera_2d.zoom = Vector2(1.0,1.0)
+	ui_robo.visible = false
